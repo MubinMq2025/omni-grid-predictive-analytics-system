@@ -1,160 +1,130 @@
 # Omni-Grid Predictive Analytics System
 
-An end-to-end machine learning ecosystem for **energy forecasting, anomaly detection, and predictive maintenance** within a next-generation AI-driven platform for renewable energy infrastructure.
+An end-to-end **AI platform for renewable energy operations**, made up of 11 machine learning and optimisation modules covering forecasting, asset health, maintenance, grid dispatch, cyber-physical security and supply chain.
+
+Built during my AI/ML Data Analyst internship, using fully synthetic data.
 
 ---
 
 ## Overview
 
-The Omni-Grid system is designed to simulate a real-world ML platform that supports intelligent decision-making in renewable energy systems. It integrates multiple machine learning modules into a unified pipeline to:
+Renewable energy operators face connected problems: predicting generation, spotting faults early, planning maintenance with limited crews, dispatching energy for maximum revenue and keeping critical spare parts in stock. These are usually solved in separate tools.
 
-- Forecast solar energy generation  
-- Detect abnormal system behaviour  
-- Predict equipment failure through Remaining Useful Life (RUL) estimation  
-
-This project demonstrates **system-level ML thinking**, combining time-series modelling, anomaly detection, and predictive analytics within a scalable architecture.
+Omni-Grid treats them as **one system**. Each module solves one business problem, and the outputs of one feed the next. For example, failure risk drives maintenance scheduling, which drives crew routing and spare-parts ordering.
 
 ---
 
-## Problem Statement
+## Modules
 
-Renewable energy systems rely heavily on accurate forecasting, early fault detection, and efficient maintenance planning. Traditional approaches often treat these problems separately, leading to inefficiencies.
+| # | Module | What it does | Key techniques | Headline result |
+|---|---|---|---|---|
+| 1 | [Solar Generation Forecasting](Solar-Generation-Forecasting/) | Forecasts solar energy output | TFT, XGBoost, time-series features | Forecast accuracy (RMSE, MAE) |
+| 2 | [Anomaly Detection](Anomaly-Detection/) | Flags abnormal inverter behaviour | Isolation Forest, statistical thresholds | Early fault alerts |
+| 3 | [Predictive Maintenance (RUL)](Predictive-Maintenance/) | Estimates remaining useful life | Gradient Boosting regression | Proactive maintenance planning |
+| 4 | [Panel Degradation](Panel-Degradation/) | Tracks long-term panel degradation | Regression, trend analysis | Degradation rate estimates |
+| 5 | [Maintenance Scheduling Optimizer](Maintenance-Scheduling-Optimizer/) | Builds a constraint-aware maintenance schedule | Priority scoring, greedy scheduling | **10.7% cost reduction** |
+| 6 | [Remote Fixing & Self-Healing](Remote-Fixing-Self-Healing/) | Recommends safe remote fixes with a safety gate | Classification, rule engine, rollback logic | **98.5% fault diagnosis accuracy** |
+| 7 | [Cyber-Physical Threat Detection](Cyber-Physical-Threat-Detection/) | Detects suspicious physical-process behaviour | Random Forest, Extra Trees, Isolation Forest | **ROC-AUC 0.99** |
+| 8 | [DER Dispatch Optimization](DER-Dispatch-Optimization/) | Optimises solar and battery dispatch | MPC-style optimiser, ML policy imitation | **+8.8% revenue**, 0 grid violations |
+| 9 | [Digital Twin & Simulation Engine](Digital-Twin-Simulation-Engine/) | Simulates assets and what-if scenarios | Physics-informed ML, scenario simulation | **R² 0.93** on efficiency |
+| 10 | [Quantum-Inspired Logistics](Quantum-Inspired-Logistics-Optimization/) | Optimises crew routing for maintenance jobs | Simulated annealing, vehicle routing | **22% shorter routes** |
+| 11 | [Spare Parts Optimization](Spare-Parts-Optimization/) | Forecasts parts demand and plans orders | Demand forecasting, safety stock, reorder points | **73.8% lower risk-adjusted cost** |
 
-This project addresses this gap by building an **integrated ML system** that combines:
-
-- Forecasting for energy optimisation  
-- Anomaly detection for system monitoring  
-- Predictive maintenance for lifecycle management  
+Each module folder has its own README with the problem, approach, results and files.
 
 ---
 
 ## System Architecture
 
-The pipeline follows a modular ML architecture:
-
-1. **Data Ingestion**
-   - Simulated weather data  
-   - Sensor and operational data  
-
-2. **Data Preprocessing**
-   - Data cleaning and transformation  
-   - Handling missing values  
-
-3. **Feature Engineering**
-   - Time-based features (lags, rolling windows)  
-   - Weather and operational indicators  
-
-4. **Model Layer**
-   - Forecasting (TFT + XGBoost)  
-   - Anomaly Detection (Isolation Forest)  
-   - Predictive Maintenance (Gradient Boosting)  
-
-5. **Evaluation**
-   - RMSE, MAE (forecasting)  
-   - ROC-AUC (anomaly detection)  
-
-6. **Output**
-   - Energy forecasts  
-   - Anomaly alerts  
-   - Maintenance recommendations  
+```text
+             Synthetic inverter telemetry + weather + operations data
+                                     |
+         +---------------------------+---------------------------+
+         |                           |                           |
+   Forecasting                 Asset Health                 Security
+   (1) Solar forecast          (2) Anomaly detection        (7) Cyber-physical
+                               (3) RUL prediction               threat detection
+                               (4) Panel degradation
+                               (9) Digital twin
+         |                           |                           |
+         +---------------------------+---------------------------+
+                                     |
+                              Decision Layer
+           (5) Maintenance scheduling   (6) Remote fixing & self-healing
+           (8) DER dispatch              (10) Logistics routing
+           (11) Spare parts optimisation
+                                     |
+              Schedules, dispatch plans, alerts, purchase orders
+```
 
 ---
 
-## Key Components
+## Tech Stack
 
-### Solar Forecasting System
-- Hybrid **Temporal Fusion Transformer (TFT) + XGBoost** model  
-- Time-series modelling using weather and temporal features  
-- Focus on improving prediction accuracy for energy output  
-
----
-
-### Anomaly Detection System
-- **Isolation Forest + statistical thresholding**  
-- Identifies abnormal system behaviour  
-- Supports early fault detection and monitoring  
+- **Languages:** Python
+- **Data:** pandas, NumPy
+- **Machine learning:** scikit-learn, XGBoost, Gradient Boosting, Random Forest, Extra Trees, Isolation Forest, Temporal Fusion Transformer
+- **Optimisation:** MPC-style optimisation, simulated annealing, greedy constraint scheduling, inventory optimisation
+- **Visualisation:** Matplotlib
+- **Tooling:** Jupyter, joblib
 
 ---
 
-### Predictive Maintenance (RUL Model)
-- **Gradient Boosting Regression**  
-- Estimates Remaining Useful Life (RUL) of assets  
-- Enables proactive maintenance planning  
+## Repository Structure
+
+```text
+omni-grid-predictive-analytics-system/
+├── Solar-Generation-Forecasting/
+├── Anomaly-Detection/
+├── Predictive-Maintenance/
+├── Panel-Degradation/
+├── Maintenance-Scheduling-Optimizer/
+├── Remote-Fixing-Self-Healing/
+├── Cyber-Physical-Threat-Detection/
+├── DER-Dispatch-Optimization/
+├── Digital-Twin-Simulation-Engine/
+├── Quantum-Inspired-Logistics-Optimization/
+├── Spare-Parts-Optimization/
+├── requirements.txt
+└── README.md
+```
+
+Each module typically contains a prototype notebook, a design document (PDF), a `data/` folder with sample data and a data dictionary, and an `outputs/` folder with results.
 
 ---
 
-## Technologies Used
+## Getting Started
 
-- **Programming:** Python  
-- **Libraries:** Pandas, NumPy, Scikit-learn, TensorFlow / PyTorch  
-- **Machine Learning:** XGBoost, Random Forest, LSTM, Isolation Forest  
-- **Explainability:** SHAP  
-- **Concepts:** Time-Series Analysis, Feature Engineering, Model Evaluation  
-- **Cloud (Conceptual):** Azure, AWS  
+```bash
+git clone https://github.com/MubinMq2025/omni-grid-predictive-analytics-system.git
+cd omni-grid-predictive-analytics-system
+pip install -r requirements.txt
+jupyter notebook
+```
 
----
-
-## Results & Evaluation
-
-Models were evaluated using standard metrics:
-
-- **Forecasting:** RMSE, MAE  
-- **Anomaly Detection:** ROC-AUC  
-- **Predictive Maintenance:** Regression-based evaluation metrics  
-
-The system demonstrates **robust predictive performance across simulated scenarios**, validating the effectiveness of the integrated pipeline.
+Open any module's notebook to explore it.
 
 ---
 
 ## Note on Data
 
-This project uses **synthetic and simulated datasets** to replicate real-world conditions.
-
-This approach was taken to:
-- Maintain confidentiality in an industry-inspired setting  
-- Focus on validating system architecture and modelling techniques  
-
----
-
-## Repository Structure
-omni-grid-ml-system/
-│
-├── solar-forecasting/
-├── anomaly-detection/
-├── predictive-maintenance/
-├── pipeline-architecture/
-└── README.md
-
-
-Each module contains its own implementation, analysis, and documentation.
+All datasets are **synthetic**, generated to mirror real renewable energy operations without using any confidential data. Where a dataset lacked fields a module needed (for example market prices or depot locations), the notebook documents the assumption and builds a transparent synthetic layer, with notes on what real data would replace it in production.
 
 ---
 
 ## Key Learnings
 
-- Designing **end-to-end ML pipelines**  
-- Integrating multiple ML models into a unified system  
-- Applying **time-series modelling and anomaly detection**  
-- Using **SHAP for model interpretability**  
-- Structuring scalable, production-like ML architectures  
-
----
-
-## Future Improvements
-
-- Integration with real-world datasets  
-- Model deployment using cloud platforms  
-- Real-time data streaming and monitoring  
-- Dashboard integration for visual analytics  
+- Designing a multi-module ML platform where outputs from one model feed decisions in another
+- Combining machine learning with optimisation and rule-based safety logic
+- Being honest about data limitations and designing prototypes that can be upgraded with real data
+- Translating model metrics into business outcomes such as cost, revenue and downtime
 
 ---
 
 ## Author
 
-**Kazi Abdul Mubin**  
-Master of Data Science — Macquarie University  
+**Kazi Abdul Mubin**
+Master of Data Science, Macquarie University
 
-- [LinkedIn](https://www.linkedin.com/in/kazi-abdul-mubin-919041280/)  
+- [LinkedIn](https://www.linkedin.com/in/kazi-abdul-mubin-919041280/)
 - [GitHub](https://github.com/MubinMq2025)
-
----

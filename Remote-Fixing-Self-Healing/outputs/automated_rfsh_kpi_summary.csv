@@ -1,0 +1,10 @@
+metric,value,percent_of_records
+Total observations processed,32627.0,
+Auto-execute eligible actions,17007.0,52.13%
+Safety-gate blocked actions,15620.0,47.87%
+Human approval required,15620.0,47.87%
+Simulated actions executed,17007.0,52.13%
+Simulated rollbacks triggered,6.0,0.02%
+Fault diagnosis test accuracy,0.9845,
+7-day failure risk test accuracy,0.9931,
+7-day failure risk ROC-AUC,0.9989,

@@ -1,0 +1,11 @@
+,value
+baseline_test_revenue_aud,665308.3051670816
+optimized_test_revenue_aud,724187.9451831144
+ml_policy_test_revenue_aud,723337.4470060458
+optimized_uplift_vs_baseline_pct,8.849978206907561
+ml_policy_uplift_vs_baseline_pct,8.722143010734108
+baseline_test_export_mwh,8388.684968241272
+optimized_test_export_mwh,9022.012050584015
+ml_policy_test_export_mwh,9014.006176861461
+optimized_grid_violations,0.0
+ml_policy_grid_violations,0.0
