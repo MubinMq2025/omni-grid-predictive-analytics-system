@@ -18,10 +18,10 @@ Omni-Grid treats them as **one system**. Each module solves one business problem
 
 | # | Module | What it does | Key techniques | Headline result |
 |---|---|---|---|---|
-| 1 | [Solar Generation Forecasting](Solar-Generation-Forecasting/) | Forecasts solar energy output | TFT, XGBoost, time-series features | Forecast accuracy (RMSE, MAE) |
-| 2 | [Anomaly Detection](Anomaly-Detection/) | Flags abnormal inverter behaviour | Isolation Forest, statistical thresholds | Early fault alerts |
-| 3 | [Predictive Maintenance (RUL)](Predictive-Maintenance/) | Estimates remaining useful life | Gradient Boosting regression | Proactive maintenance planning |
-| 4 | [Panel Degradation](Panel-Degradation/) | Tracks long-term panel degradation | Regression, trend analysis | Degradation rate estimates |
+| 1 | [Solar Generation Forecasting](Solar-Generation-Forecasting/) | Forecasts solar energy output | TFT, XGBoost, time-series features | RMSE 37% below the persistence baseline, R² 0.97 |
+| 2 | [Anomaly Detection](Anomaly-Detection/) | Flags abnormal inverter behaviour | Isolation Forest, statistical thresholds | ROC-AUC 0.98, 100% recall 7 days ahead |
+| 3 | [Predictive Maintenance (RUL)](Predictive-Maintenance/) | Estimates remaining useful life | Gradient Boosting regression | RUL MAE 6.1 days |
+| 4 | [Panel Degradation](Panel-Degradation/) | Tracks long-term panel degradation | Regression, trend analysis | R² 0.71, severity F1 0.80 |
 | 5 | [Maintenance Scheduling Optimizer](Maintenance-Scheduling-Optimizer/) | Builds a constraint-aware maintenance schedule | Priority scoring, greedy scheduling | **10.7% cost reduction** |
 | 6 | [Remote Fixing & Self-Healing](Remote-Fixing-Self-Healing/) | Recommends safe remote fixes with a safety gate | Classification, rule engine, rollback logic | **98.5% fault diagnosis accuracy** |
 | 7 | [Cyber-Physical Threat Detection](Cyber-Physical-Threat-Detection/) | Detects suspicious physical-process behaviour | Random Forest, Extra Trees, Isolation Forest | **ROC-AUC 0.99** |
